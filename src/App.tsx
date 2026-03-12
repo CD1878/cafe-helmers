@@ -37,23 +37,27 @@ export default function App() {
         </a>
       </div>
 
-      {/* Background Yellow Splashes (mimicking the menu) */}
+      {/* Background Abstract Geometric Blocks (mimicking the menu art direction) */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-20 left-10 w-64 h-96 bg-brand-yellow opacity-80 mix-blend-multiply" style={{ clipPath: 'polygon(10% 0, 100% 20%, 90% 100%, 0 80%)' }}></div>
-        <div className="absolute top-1/3 right-0 w-96 h-96 bg-brand-yellow opacity-60 mix-blend-multiply" style={{ clipPath: 'polygon(20% 10%, 100% 0, 80% 90%, 0 100%)' }}></div>
-        <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-brand-yellow opacity-70 mix-blend-multiply" style={{ clipPath: 'polygon(0 20%, 80% 0, 100% 80%, 20% 100%)' }}></div>
         
-        {/* Black Abstract Marker/Tape Shapes */}
-        <div className="absolute top-[8rem] -left-[10rem] w-[120%] h-24 bg-gradient-to-r from-transparent via-black to-transparent opacity-20 mix-blend-multiply transform rotate-3" style={{ clipPath: 'polygon(0 10%, 100% 0, 98% 90%, 2% 100%)' }}></div>
-        <div className="absolute top-[38rem] -right-[10rem] w-[110%] h-48 bg-gradient-to-l from-transparent via-black to-transparent opacity-30 mix-blend-multiply transform -rotate-6" style={{ clipPath: 'polygon(5% 0, 100% 15%, 90% 100%, 0 85%)' }}></div>
-        <div className="absolute bottom-[25rem] -left-[10rem] w-[120%] h-32 bg-gradient-to-r from-transparent via-black to-transparent opacity-20 mix-blend-multiply transform rotate-12" style={{ clipPath: 'polygon(0 0, 100% 10%, 95% 100%, 5% 90%)' }}></div>
-        <div className="absolute top-[60rem] -left-[5rem] w-[110%] h-24 bg-gradient-to-r from-transparent via-black to-transparent opacity-30 mix-blend-multiply transform -rotate-12" style={{ clipPath: 'polygon(10% 0, 100% 5%, 90% 100%, 0 95%)' }}></div>
+        {/* Yellow Background Blocks */}
+        <div className="absolute -top-[10rem] -left-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-40 mix-blend-multiply transform rotate-12"></div>
+        <div className="absolute top-[20rem] -right-[20rem] w-[60rem] h-[80rem] bg-brand-yellow opacity-30 mix-blend-multiply transform -rotate-12"></div>
+        <div className="absolute top-[80rem] -left-[5rem] w-[70rem] h-[60rem] bg-brand-yellow opacity-40 mix-blend-multiply transform rotate-6"></div>
+        <div className="absolute bottom-[10rem] -right-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-30 mix-blend-multiply transform -rotate-6"></div>
 
-        {/* Decorative text in background */}
-        <div className="absolute top-20 -left-20 font-display text-[15rem] text-black opacity-10 transform -rotate-[70deg]">HELMERS</div>
-        <div className="absolute top-60 right-10 font-display text-[12rem] text-brand-yellow opacity-30 transform rotate-12">HELMERS</div>
-        <div className="absolute top-[40rem] -right-40 font-display text-[20rem] text-black opacity-5 transform -rotate-12">HELMERS</div>
-        <div className="absolute bottom-40 -left-10 font-display text-[14rem] text-brand-yellow opacity-20 transform -rotate-45">HELMERS</div>
+        {/* Marker Text Layer 1 */}
+        <div className="absolute top-10 -left-20 font-display text-[15rem] text-black opacity-20 transform -rotate-[70deg] mix-blend-multiply">HELMERS</div>
+        <div className="absolute top-80 right-10 font-display text-[14rem] text-transparent opacity-80 transform rotate-12" style={{ WebkitTextStroke: '6px rgba(0,0,0,0.5)', textStroke: '6px rgba(0,0,0,0.5)' }}>HELMERS</div>
+
+        {/* Black Transparent Overlays (creating the muddy overlaps) */}
+        <div className="absolute -top-[5rem] left-[15rem] w-[40rem] h-[55rem] bg-black opacity-40 mix-blend-multiply transform -rotate-6"></div>
+        <div className="absolute top-[45rem] -left-[15rem] w-[50rem] h-[60rem] bg-black opacity-30 mix-blend-multiply transform rotate-12"></div>
+        <div className="absolute top-[100rem] right-[5rem] w-[45rem] h-[55rem] bg-black opacity-35 mix-blend-multiply transform -rotate-12"></div>
+
+        {/* Marker Text Layer 2 */}
+        <div className="absolute top-[40rem] -right-40 font-display text-[25rem] text-black opacity-15 mix-blend-multiply transform -rotate-12">HELMERS</div>
+        <div className="absolute bottom-60 -left-20 font-display text-[12rem] text-brand-yellow opacity-80 mix-blend-multiply transform -rotate-45">HELMERS</div>
       </div>
 
       <main className="max-w-6xl mx-auto px-4 pt-32 relative z-10">
@@ -81,7 +85,7 @@ export default function App() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 relative">
           
           {/* Left Content */}
-          <div className="md:col-span-5 space-y-12 pl-4 md:pl-12 md:-mt-[18rem] relative z-20">
+          <div className="md:col-span-5 space-y-12 pl-4 md:pl-12 md:-mt-[28rem] relative z-20">
             
             {/* Nav Links */}
             <nav className="flex flex-col space-y-4 uppercase text-xl md:text-2xl w-fit font-bold">
