@@ -41,22 +41,24 @@ export default function App() {
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         
         {/* Yellow Background Blocks */}
-        <div className="absolute -top-[10rem] -left-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-40 mix-blend-multiply transform rotate-12"></div>
-        <div className="absolute top-[20rem] -right-[20rem] w-[60rem] h-[80rem] bg-brand-yellow opacity-30 mix-blend-multiply transform -rotate-12"></div>
-        <div className="absolute top-[80rem] -left-[5rem] w-[70rem] h-[60rem] bg-brand-yellow opacity-40 mix-blend-multiply transform rotate-6"></div>
-        <div className="absolute bottom-[10rem] -right-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-30 mix-blend-multiply transform -rotate-6"></div>
+        {/* Yellow Background Blocks */}
+        <div className="absolute -top-[10rem] -left-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-10 md:opacity-40 mix-blend-multiply transform rotate-12"></div>
+        <div className="absolute top-[20rem] -right-[20rem] w-[60rem] h-[80rem] bg-brand-yellow opacity-10 md:opacity-30 mix-blend-multiply transform -rotate-12"></div>
+        <div className="absolute top-[80rem] -left-[5rem] w-[70rem] h-[60rem] bg-brand-yellow opacity-10 md:opacity-40 mix-blend-multiply transform rotate-6"></div>
+        <div className="absolute bottom-[10rem] -right-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-10 md:opacity-30 mix-blend-multiply transform -rotate-6"></div>
 
         {/* Marker Text Layer 1 */}
-        <div className="absolute top-10 -left-20 font-display text-[15rem] text-black opacity-20 transform -rotate-[70deg] mix-blend-multiply">HELMERS</div>
-        <div className="absolute top-80 right-10 font-display text-[14rem] text-transparent opacity-80 transform rotate-12" style={{ WebkitTextStroke: '6px rgba(0,0,0,0.5)', textStroke: '6px rgba(0,0,0,0.5)' }}>HELMERS</div>
+        <div className="absolute top-10 -left-20 font-display text-[15rem] text-black opacity-[0.02] transform -rotate-[70deg] mix-blend-multiply">HELMERS</div>
+        <div className="absolute top-80 right-10 font-display text-[14rem] text-transparent opacity-30 transform rotate-12" style={{ WebkitTextStroke: '6px rgba(0,0,0,0.05)', textStroke: '6px rgba(0,0,0,0.05)' }}>HELMERS</div>
 
         {/* Black Transparent Overlays (creating the muddy overlaps) */}
-        <div className="absolute -top-[5rem] left-[15rem] w-[40rem] h-[55rem] bg-black opacity-40 mix-blend-multiply transform -rotate-6"></div>
-        <div className="absolute top-[45rem] -left-[15rem] w-[50rem] h-[60rem] bg-black opacity-30 mix-blend-multiply transform rotate-12"></div>
-        <div className="absolute top-[100rem] right-[5rem] w-[45rem] h-[55rem] bg-black opacity-35 mix-blend-multiply transform -rotate-12"></div>
+        {/* Black Transparent Overlays (creating the muddy overlaps) */}
+        <div className="absolute top-[15rem] md:-top-[5rem] -left-[15rem] md:-left-[10rem] w-[45rem] h-[55rem] bg-black opacity-10 md:opacity-40 mix-blend-multiply transform -rotate-6"></div>
+        <div className="absolute top-[45rem] -left-[15rem] w-[50rem] h-[60rem] bg-black opacity-5 md:opacity-30 mix-blend-multiply transform rotate-12"></div>
+        <div className="absolute top-[100rem] right-[5rem] w-[45rem] h-[55rem] bg-black opacity-10 md:opacity-35 mix-blend-multiply transform -rotate-12"></div>
 
         {/* Marker Text Layer 2 */}
-        <div className="absolute top-[40rem] -right-40 font-display text-[25rem] text-black opacity-15 mix-blend-multiply transform -rotate-12">HELMERS</div>
+        <div className="absolute top-[40rem] -right-40 font-display text-[25rem] text-black opacity-[0.01] mix-blend-multiply transform -rotate-12">HELMERS</div>
         <div className="absolute bottom-60 -left-20 font-display text-[12rem] text-brand-yellow opacity-80 mix-blend-multiply transform -rotate-45">HELMERS</div>
       </div>
 
@@ -66,17 +68,17 @@ export default function App() {
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="flex justify-center md:justify-end md:mr-20 mb-12 w-full"
+          className="flex justify-center md:justify-end md:mr-0 mb-12 w-full"
         >
           {!logoError ? (
             <img 
               src="/logo cafe helmers.png" 
               alt="Cafe Helmers Logo" 
-              className="w-full max-w-[20rem] md:max-w-[45rem] transform -rotate-2 object-contain mix-blend-multiply"
+              className="w-[95%] max-w-[20rem] md:max-w-[42rem] transform -rotate-2 object-contain mix-blend-multiply md:translate-x-4"
               onError={() => setLogoError(true)}
             />
           ) : (
-            <h1 className="font-display text-[7rem] md:text-[14rem] leading-none text-center md:text-right transform -rotate-2">
+            <h1 className="font-display text-[7rem] md:text-[13rem] leading-none text-center md:text-right transform -rotate-2 md:translate-x-4">
               HELMERS
             </h1>
           )}
@@ -116,7 +118,7 @@ export default function App() {
             </nav>
 
             {/* Intro Text */}
-            <div className="text-sm md:text-base leading-relaxed max-w-sm">
+            <div className="text-sm md:text-base font-bold leading-relaxed max-w-sm bg-white p-6 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transform -rotate-1 relative z-30">
               <span className="highlight-yellow">We zijn een buurt café</span> waar je op iedere dag van de week heel knus en gezellig een drankje kan doen. Een ruim bier assortiment maar ook cocktails. Van donderdag t/m vrijdag hebben we een <span className="highlight-black">DJ in de avond</span>.
             </div>
 
