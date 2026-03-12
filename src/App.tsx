@@ -1,11 +1,28 @@
-import { useState } from 'react';
-import { motion } from 'motion/react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Instagram, Facebook, MapPin, Mail } from 'lucide-react';
 
 export default function App() {
   const [logoError, setLogoError] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  const rotatingImages = [
+    '/afbeeldingen/bar-2.jpg',
+    '/afbeeldingen/crowd.jpg',
+    '/afbeeldingen/cocktails.jpg',
+    '/afbeeldingen/terras.jpg'
+  ];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % rotatingImages.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="min-h-screen relative selection:bg-black selection:text-white pb-20">
+    <div className="min-h-screen relative selection:bg-black selection:text-white flex flex-col justify-between">
       {/* Marquee */}
       <div className="marquee-container border-b-2 border-black">
         <div className="marquee-content">
@@ -14,8 +31,8 @@ export default function App() {
       </div>
 
       {/* Top Right Button */}
-      <div className="absolute top-12 right-8 z-50">
-        <a href="#book" className="bg-black text-white font-bold px-6 py-4 uppercase tracking-widest hover:bg-brand-yellow hover:text-black transition-colors text-xl border-2 border-transparent hover:border-black">
+      <div className="absolute top-16 right-4 md:top-16 md:right-8 z-50">
+        <a href="#book" className="bg-black text-white font-bold px-6 py-4 uppercase tracking-widest hover:bg-brand-yellow hover:text-black transition-colors text-xl border-2 border-transparent hover:border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] inline-block">
           BOOK A TABLE
         </a>
       </div>
@@ -26,9 +43,17 @@ export default function App() {
         <div className="absolute top-1/3 right-0 w-96 h-96 bg-brand-yellow opacity-60 mix-blend-multiply" style={{ clipPath: 'polygon(20% 10%, 100% 0, 80% 90%, 0 100%)' }}></div>
         <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-brand-yellow opacity-70 mix-blend-multiply" style={{ clipPath: 'polygon(0 20%, 80% 0, 100% 80%, 20% 100%)' }}></div>
         
+        {/* Black Abstract Marker/Tape Shapes */}
+        <div className="absolute top-[8rem] -left-[10rem] w-[120%] h-24 bg-gradient-to-r from-transparent via-black to-transparent opacity-20 mix-blend-multiply transform rotate-3" style={{ clipPath: 'polygon(0 10%, 100% 0, 98% 90%, 2% 100%)' }}></div>
+        <div className="absolute top-[38rem] -right-[10rem] w-[110%] h-48 bg-gradient-to-l from-transparent via-black to-transparent opacity-30 mix-blend-multiply transform -rotate-6" style={{ clipPath: 'polygon(5% 0, 100% 15%, 90% 100%, 0 85%)' }}></div>
+        <div className="absolute bottom-[25rem] -left-[10rem] w-[120%] h-32 bg-gradient-to-r from-transparent via-black to-transparent opacity-20 mix-blend-multiply transform rotate-12" style={{ clipPath: 'polygon(0 0, 100% 10%, 95% 100%, 5% 90%)' }}></div>
+        <div className="absolute top-[60rem] -left-[5rem] w-[110%] h-24 bg-gradient-to-r from-transparent via-black to-transparent opacity-30 mix-blend-multiply transform -rotate-12" style={{ clipPath: 'polygon(10% 0, 100% 5%, 90% 100%, 0 95%)' }}></div>
+
         {/* Decorative text in background */}
-        <div className="absolute top-40 -left-20 font-display text-[15rem] text-black opacity-5 transform -rotate-90">HELMERS</div>
-        <div className="absolute bottom-40 -right-20 font-display text-[15rem] text-black opacity-5 transform rotate-45">HELMERS</div>
+        <div className="absolute top-20 -left-20 font-display text-[15rem] text-black opacity-10 transform -rotate-[70deg]">HELMERS</div>
+        <div className="absolute top-60 right-10 font-display text-[12rem] text-brand-yellow opacity-30 transform rotate-12">HELMERS</div>
+        <div className="absolute top-[40rem] -right-40 font-display text-[20rem] text-black opacity-5 transform -rotate-12">HELMERS</div>
+        <div className="absolute bottom-40 -left-10 font-display text-[14rem] text-brand-yellow opacity-20 transform -rotate-45">HELMERS</div>
       </div>
 
       <main className="max-w-6xl mx-auto px-4 pt-32 relative z-10">
@@ -60,10 +85,30 @@ export default function App() {
             
             {/* Nav Links */}
             <nav className="flex flex-col space-y-4 uppercase text-xl md:text-2xl w-fit font-bold">
-              <a href="#menu" className="highlight-yellow hover:bg-black hover:text-white transition-colors w-fit">&gt;&gt; MENU</a>
-              <a href="#contact" className="highlight-yellow hover:bg-black hover:text-white transition-colors w-fit">&gt;&gt; CONTACT</a>
-              <a href="#agenda" className="highlight-yellow hover:bg-black hover:text-white transition-colors w-fit">&gt;&gt; AGENDA</a>
-              <a href="#sfeer" className="highlight-yellow hover:bg-black hover:text-white transition-colors w-fit">&gt;&gt; SFEER</a>
+              <div className="flex flex-col space-y-2">
+                <a href="#menu" onClick={(e) => { e.preventDefault(); setIsMenuOpen(!isMenuOpen); }} className="highlight-yellow hover:bg-black hover:text-white transition-all w-fit inline-block border-2 border-transparent hover:border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]">&gt;&gt; MENU</a>
+                {/* Submenu */}
+                <AnimatePresence>
+                  {isMenuOpen && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="flex flex-col space-y-2 pl-8 text-lg md:text-xl overflow-hidden"
+                    >
+                      <div className="pt-2 flex flex-col space-y-2 pb-2">
+                        <a href="/menus/beers.pdf" target="_blank" rel="noreferrer" className="highlight-black hover:bg-brand-yellow hover:text-black transition-colors w-fit">- BEERS</a>
+                        <a href="/menus/drinks.pdf" target="_blank" rel="noreferrer" className="highlight-black hover:bg-brand-yellow hover:text-black transition-colors w-fit">- DRINKS</a>
+                        <a href="/menus/cocktails.pdf" target="_blank" rel="noreferrer" className="highlight-black hover:bg-brand-yellow hover:text-black transition-colors w-fit">- COCKTAILS</a>
+                        <a href="/menus/snacks.pdf" target="_blank" rel="noreferrer" className="highlight-black hover:bg-brand-yellow hover:text-black transition-colors w-fit">- SNACKS</a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <a href="#contact" className="highlight-yellow hover:bg-black hover:text-white transition-all w-fit inline-block border-2 border-transparent hover:border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]">&gt;&gt; CONTACT</a>
+              <a href="#agenda" className="highlight-yellow hover:bg-black hover:text-white transition-all w-fit inline-block border-2 border-transparent hover:border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]">&gt;&gt; AGENDA</a>
+              <a href="#sfeer" className="highlight-yellow hover:bg-black hover:text-white transition-all w-fit inline-block border-2 border-transparent hover:border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px]">&gt;&gt; SFEER</a>
             </nav>
 
             {/* Intro Text */}
@@ -92,27 +137,76 @@ export default function App() {
 
           </div>
 
-          {/* Center Image */}
+          {/* Center Image (Rotating Gallery) */}
           <div className="md:col-span-4 relative flex justify-center items-start mt-12 md:mt-0">
-            <div className="relative z-20 transform rotate-3">
-              <img 
-                src="/afbeeldingen/jouw-dj-foto.jpg" 
-                alt="DJ's in Cafe Helmers" 
-                className="w-80 md:w-96 h-[28rem] md:h-[34rem] object-cover border-4 border-black"
-                style={{ filter: 'drop-shadow(12px 12px 0px #fcee0a)' }}
-              />
+            {/* Overlapping black tape edges */}
+            <div className="absolute -top-10 -left-16 w-56 h-24 bg-gradient-to-br from-transparent via-black to-black opacity-30 mix-blend-multiply transform -rotate-12 z-40 pointer-events-none"></div>
+            <div className="absolute -bottom-12 -right-16 w-72 h-32 bg-gradient-to-tl from-transparent via-black to-black opacity-20 mix-blend-multiply transform rotate-6 z-40 pointer-events-none" style={{ clipPath: 'polygon(0 10%, 100% 0, 95% 100%, 5% 90%)' }}></div>
+            
+            <div className="relative z-20 transform rotate-3 w-80 md:w-96 h-[28rem] md:h-[34rem] border-4 border-black overflow-hidden bg-black" style={{ filter: 'drop-shadow(12px 12px 0px #fcee0a)' }}>
+              <AnimatePresence>
+                <motion.img 
+                  key={currentImageIndex}
+                  src={rotatingImages[currentImageIndex]}
+                  alt="Sfeer in Cafe Helmers" 
+                  initial={{ opacity: 0, scale: 1.1, filter: 'grayscale(100%)' }}
+                  animate={{ opacity: 1, scale: 1, filter: 'grayscale(0%)' }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </AnimatePresence>
             </div>
           </div>
 
-          {/* Right Decor */}
-          <div className="md:col-span-3 relative hidden md:block">
-            <div className="absolute top-10 right-0 w-48 h-64 border-4 border-black transform -rotate-6 z-0 flex flex-col justify-between p-4 bg-white">
-               <div className="font-display text-3xl text-black">DRINKS</div>
-               <div className="text-xs font-bold">
-                 <span className="highlight-yellow">BEER</span><br/>
-                 <span className="highlight-black">COCKTAILS</span><br/>
-                 <span className="highlight-yellow">WINE</span>
-               </div>
+          {/* Right Decor (Interactive Menu Stack) */}
+          <div className="md:col-span-3 relative hidden md:block z-30">
+            <div className="absolute top-5 -right-2 w-56 flex flex-col">
+               
+               {/* Menu Card: Beers */}
+               <motion.a 
+                 href="/menus/beers.pdf" target="_blank" rel="noreferrer"
+                 whileHover={{ scale: 1.05, rotate: 0, x: -15, zIndex: 50 }}
+                 className="w-full border-4 border-black transform rotate-2 bg-[var(--color-paper)] p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-shadow relative z-10 block cursor-pointer"
+               >
+                 <span className="bg-black text-white px-2 py-1 uppercase tracking-widest text-[0.65rem] inline-block mb-2">DRAFT</span><br/>
+                 <span className="highlight-yellow border-2 border-black inline-block text-xl font-display transform -rotate-2">BEERS</span>
+                 <p className="text-xs font-bold mt-2 leading-tight">Craft & tap beers.</p>
+               </motion.a>
+
+               {/* Menu Card: Cocktails */}
+               <motion.a 
+                 href="/menus/cocktails.pdf" target="_blank" rel="noreferrer"
+                 whileHover={{ scale: 1.05, rotate: 0, x: -15, zIndex: 50 }}
+                 className="w-full border-4 border-black transform -rotate-3 bg-[var(--color-paper)] p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-shadow relative z-20 -mt-6 block cursor-pointer"
+               >
+                 <span className="bg-black text-white px-2 py-1 uppercase tracking-widest text-[0.65rem] inline-block mb-2">FRESH</span><br/>
+                 <span className="highlight-yellow border-2 border-black inline-block text-xl font-display transform rotate-1">COCKTAILS</span>
+                 <p className="text-xs font-bold mt-2 leading-tight">Signature mixes.</p>
+               </motion.a>
+
+               {/* Menu Card: Drinks */}
+               <motion.a 
+                 href="/menus/drinks.pdf" target="_blank" rel="noreferrer"
+                 whileHover={{ scale: 1.05, rotate: 0, x: -15, zIndex: 50 }}
+                 className="w-full border-4 border-black transform rotate-1 bg-[var(--color-paper)] p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-shadow relative z-30 -mt-6 block cursor-pointer"
+               >
+                 <span className="bg-black text-white px-2 py-1 uppercase tracking-widest text-[0.65rem] inline-block mb-2">COLD</span><br/>
+                 <span className="highlight-yellow border-2 border-black inline-block text-xl font-display transform -rotate-1">DRINKS</span>
+                 <p className="text-xs font-bold mt-2 leading-tight">Wines & sodas.</p>
+               </motion.a>
+
+               {/* Menu Card: Snacks */}
+               <motion.a 
+                 href="/menus/snacks.pdf" target="_blank" rel="noreferrer"
+                 whileHover={{ scale: 1.05, rotate: 0, x: -15, zIndex: 50 }}
+                 className="w-full border-4 border-black transform -rotate-2 bg-[var(--color-paper)] p-4 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-shadow relative z-40 -mt-6 block cursor-pointer"
+               >
+                 <span className="bg-black text-white px-2 py-1 uppercase tracking-widest text-[0.65rem] inline-block mb-2">DELICIOUS</span><br/>
+                 <span className="highlight-yellow border-2 border-black inline-block text-xl font-display transform rotate-2">SNACKS</span>
+                 <p className="text-xs font-bold mt-2 leading-tight">Bites for the table.</p>
+               </motion.a>
+
             </div>
           </div>
 
@@ -123,21 +217,24 @@ export default function App() {
           
           {/* Bottom Left Collage */}
           <div className="md:col-span-4 relative h-96 overflow-hidden border-4 border-black transform -rotate-2 bg-white">
-            <div className="absolute inset-0 p-6 flex flex-col justify-between font-display text-5xl opacity-20 leading-none break-all">
+            <div className="absolute -top-8 -right-16 w-56 h-32 bg-gradient-to-bl from-transparent via-black to-black opacity-30 mix-blend-multiply transform rotate-12 z-20 pointer-events-none"></div>
+            <div className="absolute -bottom-10 -left-12 w-48 h-24 bg-gradient-to-tr from-transparent via-black to-black opacity-20 mix-blend-multiply transform -rotate-6 z-20 pointer-events-none"></div>
+            
+            <div className="absolute inset-0 p-6 flex flex-col justify-between font-display text-5xl opacity-20 leading-none break-all z-10">
               <span>HELMERS</span>
               <span className="text-right">HELMERS</span>
               <span className="text-center transform rotate-12">HELMERS</span>
               <span>HELMERS</span>
             </div>
-            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=800&auto=format&fit=crop" alt="Bar" className="absolute bottom-0 right-0 w-3/4 h-3/4 object-cover grayscale contrast-150 mix-blend-multiply" />
+            <img src="/afbeeldingen/dj-meiden.jpg" alt="DJ's in Cafe Helmers" className="absolute bottom-0 right-0 w-3/4 h-3/4 object-cover grayscale contrast-150 mix-blend-multiply" />
           </div>
 
           {/* Bottom Right Content */}
           <div className="md:col-span-8 md:pl-12 space-y-8 flex flex-col justify-center relative z-10">
             
-            <div className="text-xs uppercase font-bold max-w-lg">
+            <div className="text-xl md:text-2xl uppercase font-bold max-w-xl leading-relaxed">
               <span className="highlight-yellow">VRIJDAG & ZATERDAG:</span><br/>
-              <span className="highlight-black">VAN KNUS NAAR BRUISEND UITGAAN</span>
+              <span className="highlight-black mt-2 inline-block">VAN KNUS NAAR BRUISEND UITGAAN</span>
             </div>
 
             <div className="text-sm md:text-base leading-relaxed max-w-lg">
@@ -155,6 +252,41 @@ export default function App() {
         </div>
 
       </main>
+
+      {/* Footer */}
+      <footer className="mt-32 border-t-4 border-black bg-white relative z-20">
+        <div className="max-w-6xl mx-auto px-4 py-12 flex flex-col md:flex-row justify-between items-center gap-8">
+          
+          {/* Left: Logo/Afbeelding */}
+          <div className="flex-shrink-0">
+             {!logoError ? (
+               <img src="/logo cafe helmers.png" alt="Cafe Helmers Footer Logo" className="w-32 md:w-48 mix-blend-multiply" onError={() => setLogoError(true)} />
+             ) : (
+               <h2 className="font-display text-4xl text-black">HELMERS</h2>
+             )}
+          </div>
+
+          {/* Center: Contact & Adres */}
+          <div className="text-center font-bold text-sm md:text-base md:border-x-2 md:border-black px-8">
+             <p className="mb-2 uppercase tracking-widest"><MapPin className="inline w-5 h-5 mr-2 -mt-1" /> Eerste Helmersstraat 250</p>
+             <p className="uppercase tracking-widest"><Mail className="inline w-5 h-5 mr-2 -mt-1" /> info@cafehelmers.nl</p>
+          </div>
+
+          {/* Right: Socials */}
+          <div className="flex space-x-6">
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="p-3 border-2 border-black hover:bg-brand-yellow hover:-translate-y-1 hover:shadow-none transition-all bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <Instagram className="w-6 h-6" />
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="p-3 border-2 border-black hover:bg-brand-yellow hover:-translate-y-1 hover:shadow-none transition-all bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+              <Facebook className="w-6 h-6" />
+            </a>
+          </div>
+        </div>
+        <div className="bg-black text-white text-center py-6 text-xs font-bold uppercase tracking-widest border-t-2 border-white flex flex-col items-center justify-center space-y-2 opacity-90">
+          <p>© {new Date().getFullYear()} Cafe Helmers. All rights reserved.</p>
+          <p>Design by CEE Hospitality | Made by <a href="https://chefdigital.nl" target="_blank" rel="noreferrer" className="underline hover:text-brand-yellow transition-colors">Chef Digital</a></p>
+        </div>
+      </footer>
     </div>
   );
 }
