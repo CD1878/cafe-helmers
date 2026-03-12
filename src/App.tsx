@@ -118,7 +118,7 @@ export default function App() {
             </nav>
 
             {/* Intro Text */}
-            <div className="text-sm md:text-base font-bold leading-relaxed max-w-sm bg-white p-6 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transform -rotate-1 relative z-30">
+            <div className="text-sm md:text-base font-bold leading-relaxed max-w-sm bg-white p-6 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transform -translate-x-4 md:-translate-x-8 -rotate-1 relative z-30">
               <span className="highlight-yellow">We zijn een buurt café</span> waar je op iedere dag van de week heel knus en gezellig een drankje kan doen. Een ruim bier assortiment maar ook cocktails. Van donderdag t/m vrijdag hebben we een <span className="highlight-black">DJ in de avond</span>.
             </div>
 
