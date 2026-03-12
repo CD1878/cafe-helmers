@@ -56,29 +56,8 @@ export default function App() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 relative">
           
           {/* Left Content */}
-          <div className="md:col-span-5 space-y-12 pl-4 md:pl-12 md:-mt-[22rem] relative z-20">
+          <div className="md:col-span-5 space-y-12 pl-4 md:pl-12 md:-mt-[18rem] relative z-20">
             
-            {/* Intro Text */}
-            <div className="text-sm md:text-base leading-relaxed max-w-sm">
-              <span className="highlight-yellow">We zijn een buurt café</span> waar je op iedere dag van de week heel knus en gezellig een drankje kan doen. Een ruim bier assortiment maar ook cocktails. Van donderdag t/m vrijdag hebben we een <span className="highlight-black">DJ in de avond</span>.
-            </div>
-
-            {/* Hours */}
-            <div className="text-sm md:text-base uppercase tracking-widest space-y-4">
-              <div>
-                <span className="highlight-yellow mb-1 inline-block">MA - WO</span>
-                <div className="highlight-black inline-block">15:00 TILL LATE</div>
-              </div>
-              <div>
-                <span className="highlight-yellow mb-1 inline-block">DO - VR</span>
-                <div className="highlight-black inline-block">15:00 TILL LATE</div>
-              </div>
-              <div>
-                <span className="highlight-yellow mb-1 inline-block">ZA - ZO</span>
-                <div className="highlight-black inline-block">12:00 TILL LATE</div>
-              </div>
-            </div>
-
             {/* Nav Links */}
             <nav className="flex flex-col space-y-4 uppercase text-xl md:text-2xl w-fit font-bold">
               <a href="#menu" className="highlight-yellow hover:bg-black hover:text-white transition-colors w-fit">&gt;&gt; MENU</a>
@@ -87,13 +66,37 @@ export default function App() {
               <a href="#sfeer" className="highlight-yellow hover:bg-black hover:text-white transition-colors w-fit">&gt;&gt; SFEER</a>
             </nav>
 
+            {/* Intro Text */}
+            <div className="text-sm md:text-base leading-relaxed max-w-sm">
+              <span className="highlight-yellow">We zijn een buurt café</span> waar je op iedere dag van de week heel knus en gezellig een drankje kan doen. Een ruim bier assortiment maar ook cocktails. Van donderdag t/m vrijdag hebben we een <span className="highlight-black">DJ in de avond</span>.
+            </div>
+
+            {/* Hours */}
+            <div>
+              <h2 className="font-display text-2xl md:text-3xl mb-6">OPENINGSTIJDEN</h2>
+              <div className="text-sm md:text-base uppercase tracking-widest space-y-4">
+                <div>
+                  <span className="highlight-yellow mb-1 inline-block">MA - WO</span>
+                  <div className="highlight-black inline-block">15:00 TILL LATE</div>
+                </div>
+                <div>
+                  <span className="highlight-yellow mb-1 inline-block">DO - VR</span>
+                  <div className="highlight-black inline-block">15:00 TILL LATE</div>
+                </div>
+                <div>
+                  <span className="highlight-yellow mb-1 inline-block">ZA - ZO</span>
+                  <div className="highlight-black inline-block">12:00 TILL LATE</div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
           {/* Center Image */}
           <div className="md:col-span-4 relative flex justify-center items-start mt-12 md:mt-0">
             <div className="relative z-20 transform rotate-3">
               <img 
-                src="/djs.jpg" 
+                src="/afbeeldingen/jouw-dj-foto.jpg" 
                 alt="DJ's in Cafe Helmers" 
                 className="w-80 md:w-96 h-[28rem] md:h-[34rem] object-cover border-4 border-black"
                 style={{ filter: 'drop-shadow(12px 12px 0px #fcee0a)' }}
