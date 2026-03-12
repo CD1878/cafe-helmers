@@ -22,7 +22,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen relative selection:bg-black selection:text-white flex flex-col justify-between">
+    <div className="min-h-screen relative selection:bg-black selection:text-white flex flex-col justify-between overflow-x-hidden">
       {/* Marquee */}
       <div className="marquee-container border-b-2 border-black">
         <div className="marquee-content">
@@ -41,20 +41,18 @@ export default function App() {
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
         
         {/* Yellow Background Blocks */}
-        {/* Yellow Background Blocks */}
-        <div className="absolute -top-[10rem] -left-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-10 md:opacity-40 mix-blend-multiply transform rotate-12"></div>
-        <div className="absolute top-[20rem] -right-[20rem] w-[60rem] h-[80rem] bg-brand-yellow opacity-10 md:opacity-30 mix-blend-multiply transform -rotate-12"></div>
-        <div className="absolute top-[80rem] -left-[5rem] w-[70rem] h-[60rem] bg-brand-yellow opacity-10 md:opacity-40 mix-blend-multiply transform rotate-6"></div>
-        <div className="absolute bottom-[10rem] -right-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-10 md:opacity-30 mix-blend-multiply transform -rotate-6"></div>
+        <div className="absolute -top-[35rem] md:-top-[10rem] -left-[35rem] md:-left-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-20 md:opacity-40 mix-blend-multiply transform rotate-12"></div>
+        <div className="absolute top-[40rem] md:top-[20rem] -right-[30rem] md:-right-[20rem] w-[60rem] h-[80rem] bg-brand-yellow opacity-20 md:opacity-30 mix-blend-multiply transform -rotate-12"></div>
+        <div className="absolute top-[80rem] -left-[5rem] w-[70rem] h-[60rem] bg-brand-yellow opacity-20 md:opacity-40 mix-blend-multiply transform rotate-6"></div>
+        <div className="absolute bottom-[10rem] -right-[10rem] w-[50rem] h-[50rem] bg-brand-yellow opacity-20 md:opacity-30 mix-blend-multiply transform -rotate-6"></div>
 
         {/* Marker Text Layer 1 */}
         <div className="absolute top-10 -left-20 font-display text-[15rem] text-black opacity-[0.02] transform -rotate-[70deg] mix-blend-multiply">HELMERS</div>
         <div className="absolute top-80 right-10 font-display text-[14rem] text-transparent opacity-30 transform rotate-12" style={{ WebkitTextStroke: '6px rgba(0,0,0,0.05)', textStroke: '6px rgba(0,0,0,0.05)' }}>HELMERS</div>
 
         {/* Black Transparent Overlays (creating the muddy overlaps) */}
-        {/* Black Transparent Overlays (creating the muddy overlaps) */}
-        <div className="absolute top-[15rem] md:-top-[5rem] -left-[15rem] md:-left-[10rem] w-[45rem] h-[55rem] bg-black opacity-10 md:opacity-40 mix-blend-multiply transform -rotate-6"></div>
-        <div className="absolute top-[45rem] -left-[15rem] w-[50rem] h-[60rem] bg-black opacity-5 md:opacity-30 mix-blend-multiply transform rotate-12"></div>
+        <div className="absolute top-[35rem] md:-top-[5rem] -left-[25rem] md:-left-[10rem] w-[45rem] h-[55rem] bg-black opacity-10 md:opacity-40 mix-blend-multiply transform -rotate-6"></div>
+        <div className="absolute top-[65rem] md:top-[45rem] -left-[15rem] w-[50rem] h-[60rem] bg-black opacity-10 md:opacity-30 mix-blend-multiply transform rotate-12"></div>
         <div className="absolute top-[100rem] right-[5rem] w-[45rem] h-[55rem] bg-black opacity-10 md:opacity-35 mix-blend-multiply transform -rotate-12"></div>
 
         {/* Marker Text Layer 2 */}
